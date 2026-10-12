@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-latest   # 실제 대상 OS 에서 시험 (pyobjc/Quartz import 포함)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements-dev.txt
+      - name: macOS 전용 모듈 import 확인
+        run: python -c "import Quartz; from typegrass.counter import listener_macos; print('Quartz OK, permission =', listener_macos.has_permission())"
+      - name: 테스트
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python -m pytest -q

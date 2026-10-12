@@ -1,0 +1,24 @@
+# 파이썬/가상환경
+__pycache__/
+*.pyc
+.venv/
+.venv-build/
+.pytest_cache/
+*.egg-info/
+
+# 빌드 결과물 (GitHub Releases 로 배포하고, 저장소에는 올리지 않는다)
+build/
+dist/
+*.app
+*.dmg
+*.zip
+
+# 개인 데이터/임시 파일 (절대 올리지 말 것)
+.DS_Store
+typegrass_counts.csv
+meadow.png
+preview_*.png
+*.log
+*.db
+*.db-wal
+*.db-shm
